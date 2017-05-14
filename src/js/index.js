@@ -81,7 +81,7 @@ function vis(){
 	
 	var canvas = d3.select('#satcanvas')
 		.attr('width', width)
-		.attr('height', height);
+		.attr('height', height + margin.bottom);
 		
 	$(canvas.node())
 		.css('top', margin.top)
@@ -373,7 +373,7 @@ function vis(){
 		var sat, x, y;
 		t = t || 0;
 		
-		ctx.clearRect(0, 0, width, height);
+		ctx.clearRect(0, 0, width, height + margin.bottom);
 		
 		for(var i = 0; i < attributes.sampleSize; i++){
 			for(var j = i; j < satellites.length; j += attributes.sampleMax){
@@ -460,7 +460,7 @@ function vis(){
 		
 		canvas
 			.attr('width', width)
-			.attr('height', height);
+			.attr('height', height + margin.bottom);
 			
 		$(canvas.node())
 			.css('top', margin.top)
@@ -749,7 +749,7 @@ function events(){
 
 		if($(this).attr('data-collapse') == 'false'){
 			var left = parseInt($('#controls').css('width'));
-			$('#controls').css('left', -left);
+			$('#controls').css('left', -left*2);
 			$(this)
 				.attr('data-collapse', true)
 				.css('top', '0px');
@@ -816,14 +816,14 @@ function events(){
 		$('.color_list-table[data-table]').css('display', 'none');
 
 		if(type == 'none'){
-			$('.color_list-table[data-table]').parent().parent().css('height', '0px');
+			$('.color_list-table[data-table]').parent().parent().css('width', '0px');
 			
 			if(lastType && lastKey){
 				setColors(satelliteTypes[lastType][lastKey].sats, 'white', 1);
 			}
 		}
 		else{
-			$('.color_list-table[data-table]').parent().parent().css('height', '100%');
+			$('.color_list-table[data-table]').parent().parent().css('width', '100%');
 			$('.color_list-table[data-table="' + $(this).attr('data-color') + '"]').css('display', 'block');
 		}
 	});
@@ -873,12 +873,12 @@ function animate(time){
 	
 	a = performance.now();
 //	console.log(a-b);
-	if(average.length < 100)
+	if(average.length < 10)
 		average.push(tick);
 	else{
 		var sum = 0;
 		average.forEach((d)=>{sum += d});
-		console.log(sum/average.length);
+//		console.log(sum/average.length);
 		average = [];
 	}
 	

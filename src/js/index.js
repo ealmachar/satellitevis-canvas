@@ -42,6 +42,7 @@ function init(){
 
 	events();
 	animate();
+	vis.resize(true);
 }
 
 function vis(){
@@ -434,8 +435,12 @@ function vis(){
 			.attr('transform', 'rotate( ' + -(earthAttr.angle * 180 / Math.PI) + ' ' + (earthObj.radius) + ' ' + (earthObj.radius) + ' )');
 	}
 	
-	function resize(){
-		width = parseInt(svg.style('width')) - margin.left - margin.right;
+	function resize(hack){
+		var buffer = 0;
+		if(hack){
+			buffer = 1;
+		}
+		width = parseInt(svg.style('width')) - margin.left - margin.right + buffer;
 		height = parseInt(svg.style('height')) - margin.top - margin.bottom;
 		
 		x
@@ -872,6 +877,7 @@ function animate(time){
 
 	
 	a = performance.now();
+	/*
 //	console.log(a-b);
 	if(average.length < 10)
 		average.push(tick);
@@ -882,5 +888,5 @@ function animate(time){
 		average = [];
 	}
 	
-
+*/
 }

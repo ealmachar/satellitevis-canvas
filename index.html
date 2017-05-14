@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link type="text/css" rel="stylesheet" href="src/css/styles.css"></link>
+	<link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+	
+</head>
+
+<body>
+	<canvas id="satcanvas"></canvas>
+	<div id="panel">
+		<div id="panel_title">
+		<span>Data Visualization: Man-made Satellites of Earth</span>
+		</div>
+		<div id="panel_description">
+		There are over 1400 man made satellites orbiting Earth in 4 distinct regions: Low Earth orbit, Medium Earth orbit, Geosynchronous orbit, and High Earth orbit. Using data logged from the UCS Satellite Database in 7/1//2016, the satellites are visualized here.
+		</div>
+		<div id="controls">
+			<div id="collapse" data-collapse="false"><i class="material-icons">keyboard_arrow_left</i></div>
+			<div id="scale_bar" class="control_bar">
+				<div class="control_label"><span>Scale:</span></div>
+				<div class="control_button" data-exponent=".25"><span>.25</span></div>
+				<div class="control_button control_button-active" data-exponent=".5"><span>.5</span></div>
+				<div class="control_button" data-exponent=".75"><span>.75</span></div>
+				<div class="control_button" data-exponent="1"><span>1</span></div>
+			</div>
+			<div id="play_bar" class="control_bar">
+				<div class="control_label"></div>
+				<div class="control_button control_speed" data-speed="pause"><i class="material-icons">pause</i></div>
+				<div class="control_button control_speed control_button-active" data-speed="play"><i class="material-icons">play_arrow</i></div>
+			</div>
+			<div id="speed_bar" class="control_bar">
+				<div class="control_label"><span>Speed:</span></div>
+				<div class="control_button" data-speed="remove"><i class="material-icons">remove</i></div>
+				<div class="control_text"><span id="speed_bar-speed">1000x</span></div>
+				<div class="control_button" data-speed="add"><i class="material-icons">add</i></div>
+			</div>
+			<div id="color_bar" class="control_bar">
+				<div class="control_label" style="display: flex; flex: 1;"><span>Color by:</span></div>
+				<div style="display: flex; flex-direction: column; flex: 2">
+					<div class="control_button control_button-active" data-color="none"><span>none</span></div>
+					<div style="display: flex;">
+						<div class="control_button" data-color="operator"><span>Operator</span></div>
+						<div class="control_button" data-color="users"><span>Users</span></div>
+					</div>
+					<div style="display: flex;">
+						<div class="control_button" data-color="purpose"><span>Purpose</span></div>
+						<div class="control_button" data-color="rocket"><span>Rocket</span></div>
+					</div>
+				</div>
+			</div>
+			<div id="color_list">
+				<div id="color_list-contents">
+					<table data-table="operator" class="color_list-table"></table>
+					<table data-table="users" class="color_list-table"></table>
+					<table data-table="purpose" class="color_list-table"></table>
+					<table data-table="rocket" class="color_list-table"></table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="cursorwindow">
+		<div><span id="cursorwindow_title"></span></div>
+		<div><span id="cursorwindow_num"></span></div>
+		<div><span id="cursorwindow_alt"></span></div>
+		<div><span id="cursorwindow_speed"></span></div>
+	</div>
+</body>
+	<script type="text/javascript" src="src/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="src/js/d3.min.js"></script>
+	
+	<script type="text/javascript" src="src/js/orbits.js"></script>
+	<script type="text/javascript" src="src/js/index.js"></script>
+</html>

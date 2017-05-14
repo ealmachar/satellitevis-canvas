@@ -1,0 +1,297 @@
+$text_color: rgba(220, 220, 220, 1);
+$panel_background: rgba(255, 255, 255, 0.1);
+$control_button_background: rgba(255, 255, 255, 0.1);
+$control_button_hover: rgba(255, 255, 255, 0.2);
+$control_button_active: rgba(255, 255, 255, 0.3);
+
+$cursorwindow_opacity: 0.8;
+$cursorwindow_background: rgba(25/$cursorwindow_opacity, 25/$cursorwindow_opacity, 25/$cursorwindow_opacity, $cursorwindow_opacity);
+
+$text_general: 'Open Sans', Verdana;
+
+html, body{
+	width: 100%;
+	height: 100%;
+	
+	margin: 0px;
+	
+	overflow: hidden;
+	
+	background-color: black;
+}
+
+canvas{
+	position: absolute;
+	
+	pointer-events: none;
+}
+
+
+
+
+#panel{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	
+	min-height: 150px;
+	
+	padding-bottom: 40px;
+	
+	background-color: $panel_background;
+}
+
+.panel_text{
+	margin-top: 30px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#panel_title{
+	@extend .panel_text;
+
+	
+	font-size: 24px;
+	color: $text_color;
+	
+	font-family: 'Raleway', sans-serif;
+}
+
+#panel_title > span{
+	padding-bottom: 10px;
+	border-bottom: 1px solid $text_color;
+}
+
+#panel_description{
+	@extend .panel_text;
+	
+//	font-size: 14px;
+	color: $text_color;
+	font-family: $text_general;
+}
+
+#controls{
+	position: absolute;
+	top: 100%;
+	left: 0px;
+	
+	color: $text_color;
+	font-family: $text_general;
+	
+	user-select: none;
+	cursor: default;
+	
+	background-color: $panel_background;
+	
+	transition: left 0.5s;
+}
+
+.control_bar{
+	display: flex;
+	width: 300px;
+	//height: 20px;
+	
+	margin: 10px 20px;
+	
+	align-items: center;
+}
+
+.control_label, .control_button, .control_text{
+	display: flex;
+	
+	justify-content: center;
+	align-items: center;
+
+	height: 2em;
+
+	padding: 5px 0px;
+}
+
+.control_label{
+	flex: 2;
+
+	min-width: 4em;
+}
+
+.control_text{
+	flex: 2;
+//	min-width: 4em;
+	
+	background-color: rgba(255, 255, 255, 0.05);
+}
+
+.control_button{
+	flex: 1;
+//	min-width: 2em;
+	
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.control_speed{
+	flex: 2;
+}
+
+.control_button:hover{
+	background-color: $control_button_hover;
+}
+
+.control_button:active{
+	background-color: $control_button_active;
+}
+
+.control_button-active{
+
+	background-color: rgba(255, 255, 255, 0.3);
+
+	animation-name: flicker;
+	animation-duration: 0.075s;
+	animation-iteration-count: 3;
+	animation-direction: alternate;
+}
+
+.control_button > span, .control_button > i{
+	pointer-events: none;
+}
+
+@keyframes flicker {
+	from {
+		background-color: $control_button_background;
+	}
+    to {
+		background-color: $control_button_active;
+	}
+}
+
+
+
+
+#color_list{
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	height: 0px;
+	
+	display: flex;
+	
+	justify-content: center;
+	align-items: center;
+	
+	background-color: $panel_background;
+	
+	transition: height 0.25s;
+}
+
+#color_list-contents{
+	width: 85%;
+	height: 95%;
+	
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.color_list-table{
+	display: none;
+	width: 100%;
+}
+
+.color-row{
+	display: flex;
+	align-items: center;
+	
+	padding: 0.5em 1em;
+}
+
+.color-row:hover{
+	background-color: $control_button_hover		!important;
+}
+
+.color-row:active{
+	background-color: $control_button_active	!important;
+}
+
+td:first-child{
+	flex: 4;
+//	padding-left: 1em;
+	
+	pointer-events: none;
+}
+
+td:last-child{
+	flex: 1;
+//	padding-right: 1em;
+	
+	text-align: right;
+	
+	pointer-events: none;
+}
+
+
+
+
+
+
+#collapse{
+	position: absolute;
+	
+	left: 100%;
+	top: calc(50% - 25px);
+	
+	width: 20px;
+	height: 50px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	background-color: $panel_background;
+	
+	transition: top 0.5s;
+}
+
+#collapse > i{
+	transform: rotate(0deg);
+	transition: transform 0.75s;
+}
+
+#collapse:hover{
+	background-color: $control_button_hover;
+}
+
+
+
+
+
+
+
+#cursorwindow{
+	position: absolute;
+	
+	display: none;
+	
+	background-color: $cursorwindow_background;
+	color: $text_color;
+
+	font-size: 14px;
+	font-family: $text_general;
+	
+	pointer-events: none;
+}
+
+#cursorwindow > div{
+	margin: 5px 10px;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+	background: rgba(255,255,255,0.1);
+}
+ 
+::-webkit-scrollbar-thumb {
+	background: rgba(255,255,255,0.3);
+}
